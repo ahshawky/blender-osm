@@ -14,7 +14,9 @@ I suggest to to place all tree models in a single .blend file. The name of the B
 Use [bpy.types.Object.ray_cast(..)](https://www.blender.org/api/blender_python_api_current/bpy.types.Object.html#bpy.types.Object.ray_cast) or [mathutils.bvhtree.BVHTree.ray_cast(..)](https://www.blender.org/api/blender_python_api_current/mathutils.bvhtree.html#mathutils.bvhtree.BVHTree.ray_cast)? To be decided in terms of performance. Probably the latter one should be faster due to only one initialization instead of initialization overhead on each call for the former one.
 
 ### Implemenation details
-Alternatives to consider:
+Alternatives to consider how to place a tree model:
 * Direct placement (reuse the mesh for a tree, keep the trees as separate Blender objects, apply some scale to achive random variation OR may be join all tree Blender object into the single Blender object)
 * Use Blender particles: create a proxy Blender mesh where each vertex corresponds to the position of a tree; then apply Blender particles to the proxy Blender object; in the Blender particles check how to achive random variation
 * Use Blender DupliVerts: create a proxy Blender mesh like for in the case of Blender particles. Random variation doesn't seem to be possible
+
+For the case of direct placement see building/roof/RoofMesh.render(..) how to load a Blender mesh and reuse the existing mesh. Maybe that code should be moved to util/blender to be used by other code parts
