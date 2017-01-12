@@ -9,4 +9,5 @@ The task of supporting _natural=tree_row_ can be decomposed to placing _natural=
 
 I suggest to to place all tree models in a single .blend file. The name of the Blender object and Blender mesh for a tree should reflect the name of the genus or the species and how detailed the tree model is. A user can provide his own .blend file with tree models which must follow the convention for naming.
 
-
+### Placement on the terrain
+Use [bpy.types.Object.ray_cast(..)](https://www.blender.org/api/blender_python_api_current/bpy.types.Object.html#bpy.types.Object.ray_cast) or [mathutils.bvhtree.BVHTree.ray_cast(..)](https://www.blender.org/api/blender_python_api_current/mathutils.bvhtree.html#mathutils.bvhtree.BVHTree.ray_cast)? To be decided in terms of performance. Probably the latter one should be faster due to only one initialization instead of initialization overhead on each call for the former one.
