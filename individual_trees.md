@@ -19,4 +19,4 @@ Alternatives to consider how to place a tree model:
 * Use Blender particles: create a proxy Blender mesh where each vertex corresponds to the position of a tree; then apply Blender particles to the proxy Blender object; in the Blender particles check how to achive random variation
 * Use Blender DupliVerts: create a proxy Blender mesh like for in the case of Blender particles. Random variation doesn't seem to be possible
 
-For the case of direct placement see building/roof/RoofMesh.render(..) how to load a Blender mesh and reuse the existing mesh. Maybe that code should be moved to util/blender to be used by other code parts
+For the case of direct placement see _building/roof/RoofMesh.render(..)_ how to load a Blender mesh and reuse the existing mesh. Maybe that code should be moved to _util/blender_ to be used by other code parts
