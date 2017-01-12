@@ -16,6 +16,8 @@ Create a _TreeManager_ class with _parseNode(self, element, elementId)_ and _par
 
 Create a _TreeRenderer_ class (probaly derived from _renderer.Renderer_ class) resposible for loading or reusing the Blender mesh for a tree and placing it in the Blender scene. The class should have the method _renderNode(self, node, osm)_ to render a single tree and the method _renderLineString(self, rel, osm)_ to render a row tree. Them method _renderLineString(self, rel, osm)_ calls the method _renderNode(self, node, osm)_ to render each of row trees. Check if the methods _preRender(self, element, layerIndex=None)_ and _postRender(self, element, layerIndex=None)_ must be overriden in the class.
 
+Add the related code in _setup.py_. Create instaces of _TreeManager_ and _TreeRenderer_, functions for conditions and call _osm.addCondition(..)_ with them as attributes.
+
 Alternatives to consider how to place a tree model:
 * Direct placement (reuse the mesh for a tree, keep the trees as separate Blender objects, apply some scale to achive random variation OR may be join all tree Blender object into the single Blender object)
 * Use Blender particles: create a proxy Blender mesh where each vertex corresponds to the position of a tree; then apply Blender particles to the proxy Blender object; in the Blender particles check how to achive random variation
