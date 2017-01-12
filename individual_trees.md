@@ -10,13 +10,18 @@ The task of supporting _natural=tree_row_ can be decomposed to placing _natural=
 ### 3D models for trees
 I suggest to to place all tree models in a single .blend file. The name of the Blender object and Blender mesh for a tree should reflect the name of the genus or the species and how detailed the tree model is. A user can provide his own .blend file with tree models which must follow the convention for naming.
 
-### Placement on the terrain
-Use [bpy.types.Object.ray_cast(..)](https://www.blender.org/api/blender_python_api_current/bpy.types.Object.html#bpy.types.Object.ray_cast) or [mathutils.bvhtree.BVHTree.ray_cast(..)](https://www.blender.org/api/blender_python_api_current/mathutils.bvhtree.html#mathutils.bvhtree.BVHTree.ray_cast)? To be decided in terms of performance. Probably the latter one should be faster due to only one initialization instead of initialization overhead on each call for the former one.
-
 ### Implemenation details
+
+Create a _TreeManager_ class with _parseNode(self, element, elementId)_ and _parseWay(self, element, elementId)_. Those methods are responsible for checking if the related OSM node or way is valid.
+
+Create a _TreeRenderer_ class (probaly derived from _renderer.Renderer_ class) resposible for loading or reusing the Blender mesh for a tree and placing it in the Blender scene. The class should have the method _render(self, node, osm)_. Check if the methods _preRender(self, element, layerIndex=None)_ and _postRender(self, element, layerIndex=None)_ must be overriden in the class.
+
 Alternatives to consider how to place a tree model:
 * Direct placement (reuse the mesh for a tree, keep the trees as separate Blender objects, apply some scale to achive random variation OR may be join all tree Blender object into the single Blender object)
 * Use Blender particles: create a proxy Blender mesh where each vertex corresponds to the position of a tree; then apply Blender particles to the proxy Blender object; in the Blender particles check how to achive random variation
 * Use Blender DupliVerts: create a proxy Blender mesh like for in the case of Blender particles. Random variation doesn't seem to be possible
 
 For the case of direct placement see _building/roof/RoofMesh.render(..)_ how to load a Blender mesh and reuse the existing mesh. Maybe that code should be moved to _util/blender_ to be used by other code parts
+
+### Placement on the terrain
+Use [bpy.types.Object.ray_cast(..)](https://www.blender.org/api/blender_python_api_current/bpy.types.Object.html#bpy.types.Object.ray_cast) or [mathutils.bvhtree.BVHTree.ray_cast(..)](https://www.blender.org/api/blender_python_api_current/mathutils.bvhtree.html#mathutils.bvhtree.BVHTree.ray_cast)? To be decided in terms of performance. Probably the latter one should be faster due to only one initialization instead of initialization overhead on each call for the former one.
