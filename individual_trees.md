@@ -1,4 +1,4 @@
-# Support for natural=tree and natural=tree_row
+# Support of natural=tree and natural=tree_row
 
 [natural=tree](http://wiki.openstreetmap.org/wiki/Tag:natural%3Dtree) is used only for OSM nodes.<br>
 [natural=tree_row](http://wiki.openstreetmap.org/wiki/Tag:natural%3Dtree_row) is used only for OSM ways.
